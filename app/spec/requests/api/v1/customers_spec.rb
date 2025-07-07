@@ -4,7 +4,7 @@ RSpec.describe "Customers API", type: :request do
   let(:file_url) { "https://assets.theinnerhour.com/take-home-test/customers.txt" }
 
   it "returns filtered and sorted customers" do
-    get "/api/v1/customers/upload",
+    get "/api/v1/customers/list",
         params: {
           file: file_url,
           sort_by: "id",
@@ -22,7 +22,7 @@ RSpec.describe "Customers API", type: :request do
   end
 
   it "returns 400 if distance is present and unit is missing" do
-    get "/api/v1/customers/upload",
+    get "/api/v1/customers/list",
         params: {
           file: file_url,
           filters: {

@@ -73,14 +73,17 @@ bundle exec rspec
 
 ### Endpoint
 
-`GET /api/v1/customers/upload`
+`GET /api/v1/customers/list`
 
 ### Query Parameters
 
-| Parameter   | Type   | Description                                  | Default      |
-|-------------|--------|----------------------------------------------|--------------|
-| `sort_by`   | string | Field to sort results by (`id`, `name`, etc.)| `id`         |
-| `sort_type` | string | Sort order: `asc` or `desc`                   | `asc`        |
+| Parameter     | Type    | Description                                            | Default |
+|---------------|---------|--------------------------------------------------------|---------|
+| `sort_by`     | string  | Field to sort results by (`id`, `name`, etc.)         | `user_id`    |
+| `sort_type`   | string  | Sort order: `asc` or `desc`                           | `asc`   |
+| `page`        | integer | Page number for pagination                            | `1`     |
+| `page_limit`  | integer | Number of results per page                            | `10`    |
+
 
 ### Filters (JSON format in `filters` query param)
 
@@ -93,17 +96,23 @@ bundle exec rspec
 
 ### Request Example
 
-curl --location -g --request GET 'http://localhost:3000/api/v1/customers/upload?file=https://assets.theinnerhour.com/take-home-test/customers.txt&sort_by=id&sort_type=asc&filters={"customer_within": 100, "customers_within_unit": "km"}'
+curl --location -g --request GET 'http://localhost:3000/api/v1/customers/list?file=https://assets.theinnerhour.com/take-home-test/customers.txt&sort_by=id&sort_type=asc&filters={"customer_within": 100, "customers_within_unit": "km"}'
 
 ### Response Example
 
-[
-    {
-        "user_id": 25,
-        "name": "Pratik"
-    },
-    {
-        "user_id": 32,
-        "name": "Manish"
-    }
-]
+{
+    "list": [
+        {
+            "user_id": 25,
+            "name": "Pratik"
+        },
+        {
+            "user_id": 32,
+            "name": "Manish"
+        }
+    ],
+    "page": 1,
+    "page_limit": 10,
+    "total_count": 2,
+    "total_pages": 1
+}

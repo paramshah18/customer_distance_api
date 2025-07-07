@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get "customers/upload", to: "customers#upload"
+      get "customers/list", to: "customers#list"
     end
   end
 
