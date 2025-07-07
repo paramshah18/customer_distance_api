@@ -9,11 +9,11 @@ class CustomerFileProcessor
     @file_io.each_line do |line|
       begin
         customer = JSON.parse(line)
-        lat = customer['latitude'].to_f
-        lon = customer['longitude'].to_f
+        lat = customer["latitude"].to_f
+        lon = customer["longitude"].to_f
 
         if DistanceCalculator.within_range?(lat, lon)
-          customers << { user_id: customer['user_id'], name: customer['name'] }
+          customers << { user_id: customer["user_id"], name: customer["name"] }
         end
       rescue JSON::ParserError
         Rails.logger.error("Invalid JSON line: #{line}")
