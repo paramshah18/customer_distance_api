@@ -8,7 +8,7 @@ RSpec.describe 'Customers API', type: :request do
         params: {
           file: file_url,
           sort_by: 'id',
-          sort_type: 'ascrvm use ruby-3.4.3 --default',
+          sort_type: 'asc',
           filters: {
             customer_within: 100,
             customers_within_unit: 'km',
